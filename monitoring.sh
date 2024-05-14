@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "	#Architecture: $(uname -a)
+wall "	#Architecture: $(uname -a)
 	#CPU physical: $(lscpu | grep -E "Core\(s\)|Socket" | awk 'BEGIN {cpus = 1} {cpus *= $NF} END {print cpus}')
 	#vCPU: $(nproc --all)
 	#Memory Usage: $(free --mega | awk '$1 == "Mem:" {printf "%d/%dMB (%.2f%%)\n", $3, $2, $3/$2*100}')
@@ -11,4 +11,5 @@ echo "	#Architecture: $(uname -a)
 	#TCP connections: $(netstat -an | grep ESTABLISHED | wc -l) ESTABLISHED
 	#User log: $(who | wc -l)
 	#Network: IP $(hostname -I)($(ip link | grep ether | awk '{printf "%s", $2}'))
+	#Sudo: $(journalctl _COMM=sudo | grep COMMAND | wc -l)
 "
